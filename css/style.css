@@ -76,6 +76,7 @@ nav {
 
 .more-posts-header {
   text-align: center;
+  margin-bottom: 1.7em;
 }
 
 .expand-desc {
@@ -97,6 +98,13 @@ body {
   font-family: "Source Sans 3", sans-serif;
 }
 
+header,
+footer,
+ul,
+#hero-article {
+  display: flex;
+}
+
 body {
   display: grid;
   grid-template-columns: 1fr;
@@ -105,13 +113,6 @@ body {
   "header"
   "main"
   "footer";
-}
-
-header,
-footer,
-ul,
-#hero-article {
-  display: flex;
 }
 
 header {
@@ -217,7 +218,7 @@ p {
   grid-area: posts;
 }
 
-#posts > *:not(:last-child) {
+#posts > *:not(:last-child):not(:first-child) {
   margin-bottom: 2.563em;
 }
 
@@ -240,6 +241,10 @@ p {
   transition-property: height, margin, color, background-color;
   transition-duration: 2s;
   transition-timing-function: ease-out;
+}
+
+#previous-btn {
+  margin-bottom: 2.125em;
 }
 
 .post {
@@ -265,6 +270,40 @@ p {
   display: none !important;
 }
 
-@media (min-width: 768px) {
+.posts-view-btn {
+  border: none;
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+  margin: auto;
+  text-align: center;
+  display: block;
+}
 
+@media (min-width: 768px) {
+  main {
+    grid-template-columns: 1.25em 1fr 1.25em;
+    grid-template-rows: minmax(18.75em, 1fr);
+    grid-template-areas: 
+    "hero hero hero"
+    ". posts .";
+    gap: 2.125em 0;
+    transition-property: height, margin, color, background-color;
+    transition-duration: 2s;
+    transition-timing-function: ease-out;
+  }
+
+  #posts {
+    grid-area: posts;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: 
+    "post post post"
+    "post post post"
+    "post post post";
+  }
 }
