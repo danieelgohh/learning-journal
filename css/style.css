@@ -1,0 +1,270 @@
+/* Typography */
+
+nav {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+#site-header {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+#hero-date {
+  font-size: 0.75rem;
+  font-weight: 400;
+  margin-top: 2.67em;
+}
+
+#hero-date.expand {
+  transition: all 2s ease-out;
+}
+
+#hero-title {
+  font-size: 2rem;
+  line-height: 1.08;
+  margin: 0.25em 0;
+}
+
+#hero-desc {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+#footer-title,
+#footer-copyright {
+  font-size: 0.75rem;
+}
+
+#footer-title {
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+#footer-copyright {
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.post-date {
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1;
+  margin-top: 1em;
+}
+
+.post-desc {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.post-title {
+  font-weight: 700;
+  margin: 0.375em 0;
+}
+
+.expand-header,
+.more-posts-header {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.more-posts-header {
+  text-align: center;
+}
+
+.expand-desc {
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+
+/* Layout */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Source Sans 3", sans-serif;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3.75em 1fr 6.875em;
+  grid-template-areas: 
+  "header"
+  "main"
+  "footer";
+}
+
+header,
+footer,
+ul,
+#hero-article {
+  display: flex;
+}
+
+header {
+  grid-area: header;
+  font-family: "Roboto", sans-serif;
+  padding: 0 1.5em 0 1.25em;
+}
+
+main {
+  grid-area: main;
+  grid-template-columns: 1.25em 1fr 1.25em;
+  grid-template-rows: minmax(18.75em, 1fr);
+  display: grid;
+  grid-template-areas: 
+  "hero hero hero"
+  ". posts .";
+  gap: 2.125em 0;
+  transition-property: height, margin, color, background-color;
+  transition-duration: 2s;
+  transition-timing-function: ease-out;
+}
+
+main.expand {
+  grid-template-rows: minmax(56.063em, 1fr);
+  transition-property: height, margin, color, background-color;
+  transition-duration: 2s;
+  transition-timing-function: ease-out;
+  grid-template-areas: 
+  "hero hero hero"
+  ". posts .";
+}
+
+footer {
+  grid-area: footer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #202020;
+  margin-top: 2.688em;
+  color: fff;
+}
+
+nav {
+  margin: auto 0 auto auto;
+}
+
+ul {
+  list-style-type: none;
+  gap: 1.125em;
+}
+
+p {
+  margin: 0;
+}
+
+#logo-img {
+  width: 5vw;
+  height: 5vh;
+  object-fit: contain;
+  margin: auto 0.214em auto 0;
+}
+
+#site-header {
+  margin: auto auto auto 0;
+  padding: 0;
+}
+
+#hero-article {
+  grid-area: hero;
+  background-image: url("/images/hero-image.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  color: white;
+  gap: 1em 0;
+  transition-property: height, margin, color, background-color;
+  transition-duration: 2s;
+  transition-timing-function: ease-out;
+  z-index: 1;
+}
+
+#hero-article.expand {
+  transition-property: height, margin, color, background-color;
+  transition-duration: 2s;
+  transition-timing-function: ease-out;
+  background-image: none;
+  color: black;
+}
+
+#article-text-container {
+  margin: auto auto 0 0;
+  padding: 0 1.25em 1.563em;
+}
+
+#article-text-container.expand {
+  margin: 0 auto auto 0;
+  transition-property: height, margin, color, background-color;
+  transition-duration: 2s;
+  transition-timing-function: ease-out;
+}
+
+#posts {
+  grid-area: posts;
+}
+
+#posts > *:not(:last-child) {
+  margin-bottom: 2.563em;
+}
+
+#hero-desc-more {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+#hero-img-more {
+  width: 23.75em;
+  height: 12em;
+  object-fit: cover;
+  object-position: center 80%;
+  border-radius: 0.188em;
+  margin: 2.2em 0;
+}
+
+#hero-img-more.expand {
+  transition-property: height, margin, color, background-color;
+  transition-duration: 2s;
+  transition-timing-function: ease-out;
+}
+
+.post {
+  grid-area: post;
+  transition-property: height, margin, color, background-color;
+  transition-duration: 2s;
+  transition-timing-function: ease-out;
+}
+
+.post-image {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.188em;
+}
+
+.expand {
+  transition-property: height, margin, color, background-color;
+  transition-duration: 2s;
+  transition-timing-function: ease-out;
+}
+
+.hide {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+
+}
