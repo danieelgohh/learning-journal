@@ -9,8 +9,43 @@ const moreDescHero = document.getElementById("hero-desc-more")
 const heroDate = document.getElementById("hero-date")
 const heroTitle = document.getElementById("hero-title")
 const heroDesc = document.getElementById("hero-desc")
+let newBgImg = false
 
 const postsHeader = document.createElement("div")
+
+document.addEventListener("click", (e) => {
+  if (e.target.parentElement.dataset.id) {
+    renderHeroArticle(e.target.parentElement.dataset.id)
+  }
+
+  if (e.target.closest("article") === heroArticle) {
+    heroArticle.classList.toggle("expand")
+    mainContainer.classList.toggle("expand")
+    articleTextContainer.classList.toggle("expand")
+    heroImageMore.classList.toggle("hide")
+    heroImageMore.classList.toggle("expand")
+    moreDescHero.classList.toggle("hide")
+    heroDate.classList.toggle("expand")
+    heroTitle.classList.toggle("expand")
+    moreDescHero.classList.toggle("expand")
+    // postsHeader.classList.toggle("hide")
+    console.log()
+    if (newBgImg) {
+      changeBgImg(heroImageMore.src.split('/')[heroImageMore.src.split('/').length - 2] + "/" + heroImageMore.src.split('/')[heroImageMore.src.split('/').length - 1]) // Basically src returns the whole domain and the image file e.g. "domain.com/images/image.png" so this splits it into [domain.com, images, image.png] and i take arr[1] + "/" + arr[2] there is alot of simplification to be done though like setting a variable for heroImageMore.src.split('/') -> varX
+    }
+    
+  }
+
+  if (e.target.id === "view-more-btn") {
+    renderPosts(Number(e.target.dataset.currentId))
+    postsSection.scrollIntoView({ behavior: "smooth" })
+  }
+
+  if (e.target.id === "previous-btn") {
+    renderPosts(e.target.dataset.currentId - Number(e.target.dataset.currentId) % 6 - 6)
+    postsSection.scrollIntoView({ behavior: "smooth" })
+  }
+})
 
 const renderHeroArticle = (postId) => {
   const selectedPost = posts.filter((post) => (post.id === Number(postId)))
@@ -41,46 +76,19 @@ const renderHeroArticle = (postId) => {
   heroDate.classList.add("expand")
   heroTitle.classList.add("expand")
   moreDescHero.classList.add("expand")
+  heroArticle.style.backgroundImage = ""
+
+  newBgImg = true
+  renderPosts(0, postId)
 }
 
-document.addEventListener("click", (e) => {
-  if (e.target.parentElement.dataset.id) {
-    console.log(e.target.parentElement)
-    renderHeroArticle(e.target.parentElement.dataset.id)
-  }
-
-  if (e.target.closest("article") === heroArticle) {
-    heroArticle.classList.toggle("expand")
-    mainContainer.classList.toggle("expand")
-    articleTextContainer.classList.toggle("expand")
-    heroImageMore.classList.toggle("hide")
-    heroImageMore.classList.toggle("expand")
-    moreDescHero.classList.toggle("hide")
-    heroDate.classList.toggle("expand")
-    heroTitle.classList.toggle("expand")
-    moreDescHero.classList.toggle("expand")
-    postsHeader.classList.toggle("hide")
-  }
-
-  if (e.target.id === "view-more-btn") {
-    console.log(e.target.dataset.currentId)
-    renderPosts(Number(e.target.dataset.currentId) + 1)
-    postsSection.scrollIntoView({ behavior: "smooth" })
-  }
-
-  if (e.target.id === "previous-btn") {
-    console.log(e.target.dataset.currentId)
-    renderPosts(e.target.dataset.currentId - Number(e.target.dataset.currentId) % 3 - 3)
-    postsSection.scrollIntoView({ behavior: "smooth" })
-  }
-})
-
-const getPosts = (index = 0) => {
-  console.log(index)
-  const limit = index + 3 > posts.length 
-    ? index + (index + 3 - posts.length)
-    : index + 3
-  return posts.slice(index, 6).map((post) => {
+const getPosts = (index = 0, chosenId = 0) => {
+  const limit = index + 6 > posts.length + 1
+    ? index + (index + 6 - posts.length + 1)
+    : index + 6
+  return posts
+  .filter((post) => (post.id != chosenId)).slice(index, limit)
+  .map((post) => {
     const {
       id,
       image,
@@ -105,19 +113,18 @@ const getPosts = (index = 0) => {
   }).join('')
 }
 
-const renderPosts = (index = 0) => {
-  postsSection.innerHTML = getPosts(index)
+const renderPosts = (index = 0, chosenId = 0) => {
+  postsSection.innerHTML = getPosts(index, chosenId)
   postsSection.prepend(postsHeader)
   
-  if (index + 6 < posts.length) {
+  if (index + 6 < posts.filter((post) => (post.id != chosenId)).length) {
     const viewMoreBtn = document.createElement("button")
     viewMoreBtn.textContent = "View More"
     viewMoreBtn.classList.add("posts-view-btn")
     viewMoreBtn.setAttribute("id", "view-more-btn")
-    viewMoreBtn.dataset.currentId = index + 3 - 1
+    viewMoreBtn.dataset.currentId = index + 6
     postsSection.append(viewMoreBtn)
   } else if (index > 2) {
-    console.log(postsHeader)
     const previousPostsBtn = document.createElement("button")
     previousPostsBtn.textContent = "Previous"
     previousPostsBtn.classList.add("posts-view-btn")
@@ -134,6 +141,12 @@ const renderPosts = (index = 0) => {
     postsHeader.classList.add("more-posts-header")
     postsHeader.classList.add("hide")
   }
+}
+
+const changeBgImg = (image) => {
+if (!heroArticle.classList.contains("expand"))
+  heroArticle.style.backgroundImage = `url(${image})`
+  newBgImg = false
 }
 
 renderPosts()

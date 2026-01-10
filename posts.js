@@ -1,6 +1,16 @@
 const postsArr = [
   {
     id: 0,
+    image: `images/hero-image.png`,
+    alt: "Temporary alt text",
+    date: "July 23, 2026",
+    title: "My new journey as a bootcamp student",
+    description: `
+      After several months of learning in the Frontend Developer Career Path, I've made the big jump over to the Bootcamp to get expert code reviews of my Solo Projects projects and meet like-minded peers.
+    `
+  },
+  {
+    id: 1,
     image: `images/post1.png`,
     alt: "Temporary alt text",
     date: "July 23, 2026",
@@ -10,7 +20,7 @@ const postsArr = [
     `
   }, 
   {
-    id: 1,
+    id: 2,
     image: `images/post2.png`,
     alt: "Temporary alt text",
     date: "July 23, 2026",
@@ -20,7 +30,7 @@ const postsArr = [
     `
   },
   {
-    id: 2,
+    id: 3,
     image: `images/post3.png`,
     alt: "Temporary alt text",
     date: "July 23, 2026",
@@ -30,7 +40,7 @@ const postsArr = [
     `,
   },
   {
-    id: 3,
+    id: 4,
     image: `images/post4.png`,
     alt: "Temporary alt text",
     date: "July 23, 2026",
@@ -40,7 +50,7 @@ const postsArr = [
     `,
   },
   {
-    id: 4,
+    id: 5,
     image: `images/post5.png`,
     alt: "Temporary alt text",
     date: "July 23, 2026",
@@ -50,7 +60,7 @@ const postsArr = [
     `,
   },
   {
-    id: 5,
+    id: 6,
     image: `images/post6.png`,
     alt: "Temporary alt text",
     date: "July 23, 2026",
