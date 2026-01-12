@@ -29,11 +29,8 @@ document.addEventListener("click", (e) => {
     heroTitle.classList.toggle("expand")
     moreDescHero.classList.toggle("expand")
     // postsHeader.classList.toggle("hide")
-    console.log()
-    if (newBgImg) {
-      changeBgImg(heroImageMore.src.split('/')[heroImageMore.src.split('/').length - 2] + "/" + heroImageMore.src.split('/')[heroImageMore.src.split('/').length - 1]) // Basically src returns the whole domain and the image file e.g. "domain.com/images/image.png" so this splits it into [domain.com, images, image.png] and i take arr[1] + "/" + arr[2] there is alot of simplification to be done though like setting a variable for heroImageMore.src.split('/') -> varX
-    }
-    
+
+    changeBgImg(heroImageMore.src.split('/')[heroImageMore.src.split('/').length - 2] + "/" + heroImageMore.src.split('/')[heroImageMore.src.split('/').length - 1]) // Basically src returns the whole domain and the image file e.g. "domain.com/images/image.png" so this splits it into [domain.com, images, image.png] and i take arr[1] + "/" + arr[2] there is alot of simplification to be done though like setting a variable for heroImageMore.src.split('/') -> varX
   }
 
   if (e.target.id === "view-more-btn") {
@@ -144,9 +141,12 @@ const renderPosts = (index = 0, chosenId = 0) => {
 }
 
 const changeBgImg = (image) => {
-if (!heroArticle.classList.contains("expand"))
-  heroArticle.style.backgroundImage = `url(${image})`
-  newBgImg = false
+  if (!heroArticle.classList.contains("expand")) {
+    heroArticle.style.backgroundImage = `url(${image})`
+    newBgImg = false
+  } else {
+    heroArticle.style.backgroundImage = "none"
+  }
 }
 
 renderPosts()

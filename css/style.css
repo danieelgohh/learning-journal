@@ -169,8 +169,8 @@ p {
 }
 
 #logo-img {
-  width: 5vw;
-  height: 5vh;
+  width: 2.131em;
+  height: 2.131em;
   object-fit: contain;
   margin: auto 0.214em auto 0;
 }
@@ -188,14 +188,14 @@ p {
   background-position: bottom;
   color: white;
   gap: 1em 0;
-  transition-property: height, margin, color, background-color;
+  transition-property: color;
   transition-duration: 2s;
   transition-timing-function: ease-out;
   z-index: 1;
 }
 
 #hero-article.expand {
-  transition-property: height, margin, color, background-color;
+  transition-property: color;
   transition-duration: 2s;
   transition-timing-function: ease-out;
   background-image: none;
@@ -209,7 +209,7 @@ p {
 
 #article-text-container.expand {
   margin: 0 auto auto 0;
-  transition-property: height, margin, color, background-color;
+  transition-property: color;
   transition-duration: 2s;
   transition-timing-function: ease-out;
 }
@@ -229,18 +229,12 @@ p {
 }
 
 #hero-img-more {
-  width: 23.75em;
-  height: 12em;
+  width: 100%;
+  height: 25vh;
   object-fit: cover;
-  object-position: center 80%;
+  object-position: center;
   border-radius: 0.188em;
   margin: 2.2em 0;
-}
-
-#hero-img-more.expand {
-  transition-property: height, margin, color, background-color;
-  transition-duration: 2s;
-  transition-timing-function: ease-out;
 }
 
 #previous-btn {
@@ -257,12 +251,6 @@ p {
   width: 100%;
   object-fit: cover;
   border-radius: 0.188em;
-}
-
-.expand {
-  transition-property: height, margin, color, background-color;
-  transition-duration: 2s;
-  transition-timing-function: ease-out;
 }
 
 .hide {
@@ -296,7 +284,7 @@ p {
   }
 
   main.expand {
-    grid-template-rows: minmax(48.25em, 0.9fr);
+    grid-template-rows: minmax(48.25em, 60em);
   }
 
   #posts {
@@ -326,11 +314,5 @@ p {
     object-fit: cover;
     width: 100%;
     height: 100%;
-  }
-
-  #hero-img-more {
-    width: 100%;
-    height: 25%;
-    object-position: center;
   }
 }
